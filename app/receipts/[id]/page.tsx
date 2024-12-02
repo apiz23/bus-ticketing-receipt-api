@@ -16,10 +16,33 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { Bus, MapPin, Phone, UserRound } from "lucide-react";
 
+interface BusModel {
+	brand: string;
+	type: string;
+}
+
+interface BusRoute {
+	from_station: string;
+	to_station: string;
+	date: string | null;
+	time: string;
+	price: number;
+}
+
+interface Booking {
+	book_id: string;
+	name: string;
+	seat_no: string;
+	email: string;
+	no_phone: string;
+	bus_route: BusRoute;
+	bus_model: BusModel;
+}
+
 export default function Page() {
 	const params = useParams();
-	const [busBooking, setBusBooking] = useState<any>([]);
-	const [error, setError] = useState<any>(null);
+	const [busBooking, setBusBooking] = useState<Booking[]>([]);
+	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -91,7 +114,7 @@ export default function Page() {
 				Bus Booking Details
 			</h1>
 			<div className="m-3">
-				{busBooking.map((booking: any, index: number) => (
+				{busBooking.map((booking, index) => (
 					<Card
 						key={index}
 						className="mx-auto w-full sm:w-[210mm] h-auto sm:h-[297mm] p-4 sm:p-6 shadow-none border-none rounded-md bg-white text-black"

@@ -26,6 +26,9 @@ importers:
       html2canvas:
         specifier: ^1.4.1
         version: 1.4.1
+      inotify:
+        specifier: ^1.4.6
+        version: 1.4.6
       jspdf:
         specifier: ^2.5.2
         version: 2.5.2

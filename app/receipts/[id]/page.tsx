@@ -13,8 +13,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bus, MapPin, Phone, UserRound } from "lucide-react";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
 
 interface BusModel {
 	brand: string;
@@ -77,36 +75,36 @@ export default function Page() {
 		return <p>Loading...</p>;
 	}
 
-	const handleDownloadPDF = async () => {
-		const element = document.getElementById("content-to-print");
+	// const handleDownloadPDF = async () => {
+	// 	const element = document.getElementById("content-to-print");
 
-		if (!element) {
-			console.error("Element with id 'content-to-print' not found.");
-			return;
-		}
+	// 	if (!element) {
+	// 		console.error("Element with id 'content-to-print' not found.");
+	// 		return;
+	// 	}
 
-		const canvas = await html2canvas(element, {
-			scale: 2,
-			useCORS: true,
-		});
-		const imgData = canvas.toDataURL("image/png");
+	// 	const canvas = await html2canvas(element, {
+	// 		scale: 2,
+	// 		useCORS: true,
+	// 	});
+	// 	const imgData = canvas.toDataURL("image/png");
 
-		const pdf = new jsPDF({
-			orientation: "p",
-			unit: "mm",
-			format: "a4",
-		});
+	// 	const pdf = new jsPDF({
+	// 		orientation: "p",
+	// 		unit: "mm",
+	// 		format: "a4",
+	// 	});
 
-		pdf.addImage(imgData, "PNG", 10, 10, 190, 270);
+	// 	pdf.addImage(imgData, "PNG", 10, 10, 190, 270);
 
-		const filename = prompt("Enter the filename for the PDF:", "download.pdf");
+	// 	const filename = prompt("Enter the filename for the PDF:", "download.pdf");
 
-		if (filename) {
-			pdf.save(filename);
-		} else {
-			console.log("Download cancelled");
-		}
-	};
+	// 	if (filename) {
+	// 		pdf.save(filename);
+	// 	} else {
+	// 		console.log("Download cancelled");
+	// 	}
+	// };
 
 	return (
 		<div className="min-h-screen bg-black text-white py-5 sm:py-10">
@@ -252,7 +250,7 @@ export default function Page() {
 				<div className="max-w-3xl mx-auto flex justify-end">
 					<Button
 						className="my-5 inline-block rounded hover:bg-red-600 bg-red-500 px-8 py-2 text-sm font-medium text-white transition hover:scale-110 active:bg-red-900"
-						onClick={handleDownloadPDF}
+						// onClick={handleDownloadPDF}
 					>
 						Generate PDF
 					</Button>
